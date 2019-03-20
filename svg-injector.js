@@ -379,6 +379,12 @@
         styleTag.textContent += '';
       });
 
+      // If we don't have a parentNode we can not replace the node inline 
+      if (!el.parentNode) {
+        callback('Attempted to process an image that is not in the DOM. SVG to load:' + imgUrl);
+        return;
+      }
+    
       // Replace the image with the svg
       el.parentNode.replaceChild(svg, el);
 
